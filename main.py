@@ -18,12 +18,11 @@ MY_SECRET_KEY = "tinku_local_test_key"
 #temporary
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Allows all origins for testing
+    allow_origins=["*"],  # Allows all origins (GUVI, local, etc.)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 
 @app.post("/chat")
@@ -116,4 +115,5 @@ def evaluate_and_report(session_id, intel, history):
         }
         send_to_guvi_with_retry(session_id, payload, turn_count + 1)
     else:
+
         print(f"⏳ STRATEGIC WAIT: Intel Count: {intel_count}, Turns: {turn_count}")
