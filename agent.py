@@ -8,14 +8,16 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # FIXED: Standard model names. 
 # "gemini-3-flash-preview" does not exist yet; use 1.5 or 2.0.
-MODEL_PRIORITY = [ 
+MODEL_PRIORITY = [
+    "gemini-3-flash-preview",
+    "gemini-2.5-Flash-lite",
     "gemini-2.5-flash", 
     "gemini-2.0-flash",
     "gemini-1.5-pro"
     "gemini-3-pro-preview"
     "gemini-2.5-pro"
     "gemini-2.0-pro"
-    "gemini-3.0-flash"
+    "gemini-3-flash"
 ]
 
 class ExtractedIntelligence(BaseModel):
@@ -131,4 +133,5 @@ def extract_intelligence(message: str, history: list) -> ExtractedIntelligence:
         phoneNumbers=[], suspiciousKeywords=["fallback_active"], 
         scamDetected=basic_check, 
         agentNotes="AI Analysis failed; basic keyword detection used."
+
     )
